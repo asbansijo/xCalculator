@@ -8,10 +8,14 @@ const Calculator = () => {
 
     const handleClick = (value) => {
         if (value === '=') {
-            try {
-                setResult(eval(input));
-            } catch (error) {
+            if (input.trim() === '' || /[+\-*/]$/.test(input)) {
                 setResult('Error');
+            } else {
+                try {
+                    setResult(eval(input));
+                } catch (error) {
+                    setResult('Error');
+                }
             }
         } else if (value === 'C') {
             setInput('');
